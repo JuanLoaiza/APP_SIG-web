@@ -1,0 +1,142 @@
+ <!--
+ Juan gabriel Loaiza
+ SIG web de la cuenca del río Culiacán
+ Maestria en Ciencias de la Ingeniería
+ construcción del mapa
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIG-Cuenca_Culiacán</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
+    <link rel="stylesheet" href="css/leaflet-sidebar.css" />
+    <link rel="stylesheet" href="css/leaflet-side.css" />
+    <link rel="stylesheet" href="css/styl.css" />
+        
+                           <!--Data-->
+                         
+    	<script type="text/javascript" src="data/a_mcpsinaloa.js"></script>
+    	<script type="text/javascript" src="data/e_subcuencas.js"></script>
+    	<script type="text/javascript" src="data/d_usv1990.js"></script>
+    	<script type="text/javascript" src="data/m_usv2019.js"></script>
+    	<script type="text/javascript" src="data/g_usv2049.js"></script>
+        <script type="text/javascript" src="data/l_rios_princp.js"></script>
+        <script type="text/javascript" src="data/lang.js"></script>
+        <script type="text/javascript" src="data/pes.js"></script>
+        <script src="leaflet.groupedlayercontrol.js"></script>
+        <link rel="stylesheet" href="leaflet.groupedlayercontrol.css" />
+  
+                       <!--[cluster-->
+                             
+        <script src="js/leaflet.browser.print.js"></script>
+        <script src="js/leaflet.browser.print.utils.js"></script>
+        <script src="js/leaflet.browser.print.sizes.js"></script>
+
+        <script type="text/javascript" src="js/leaflet.markercluster.js"></script>
+        <link rel="stylesheet" href="js/MarkerCluster.css" />
+        <link rel="stylesheet" href="js/MarkerCluster.Default.css" />
+        <script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/leaflet.js"></script>
+        <script type="text/javascript" src="js/lightbox.js" > </script>
+        <link rel="stylesheet" href="css/lightbox.css" />
+      
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+                      
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+		<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+</head>
+<body>
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+
+       <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#vrstvy" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="javascript:Abrir()" role="tab"><i class="fas fa-tree"></i></a></li>
+                <li><a href="javascript:Abrir_co()" role="tab"><i class="fab fa-envira"></i></a></li>
+                <li><a href="javascript:Abrir_us()" role="tab"><i class="fas fa-info"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="vrstvy">
+                <h1 class="sidebar-header" id="tlac">Capas<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1><img href="img/figura1.png">
+                <div id="seznamvrstev"> 
+
+                </div>    
+            </div>
+ 
+        </div>
+    </div>
+
+        <div class="side" id="vent_us" style=" z-index: 9999;" >
+            <div id="close_win"><a href="javascript:cerrar_us()"><i class="fas fa-times"></i></a></div>
+                 <h1>Acerca de este proyecto</h1>
+                  <p>Este es un proyecto desarrollado en el tecnológico Nacional de México, Instituto tecnológico de Culiacán como parte del proceso de titulación del programa de maestría en ciencias de la ingeniería, con apoyo de investigadores asignados como cátedras por parte de Concejo Nacional de Ciencia y Tecnología (CONACyT - Proyecto 2572). </p>
+                <p><strong>Juan Gabriel Loaiza</strong></p>
+                <p>Email: juangabrielloaiza@gmail.com</p>
+        </div>
+
+        <div class="side" id="vent_co">
+            <div id="close_win"><a href="javascript:cerrar_co()"><i class="fas fa-times"></i></a></div>
+                 <h1>Capacidad de Captura de CO<sub>2</sub> en la cuenca de río Culiacán</h1>
+                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit pulvinar, euismod litora aenean urna in feugiat ridiculus ac, habitant luctus convallis proin dapibus eu eleifend, gravida justo interdum vehicula inceptos et nec. Interdum inceptos hac etiam vulputate parturient torquent erat curabitur mollis elementum, eros himenaeos vestibulum nibh neque dictumst vivamus lacus fusce, primis sem nostra felis urna nulla bibendum tempus rutrum. Sollicitudin egestas convallis vestibulum dis felis sociis quam tempor feugiat, dignissim mauris duis in nostra potenti venenatis ad eleifend, facilisis scelerisque fringilla ultrices luctus enim phasellus platea. </p>
+        </div>
+
+       <div class="side" id="vent">
+            <div id="close_win"><a href="javascript:cerrar()"><i class="fas fa-times"></i></a></div>
+                <h1>clasificación de uso de suelo y cambio de uso de suelo 1990-2019</h1>
+                <a class="example-image-link" href="img/matriz_cruzada.png" data-lightbox="example-1" data-title="Matriz cruzada 1990-2019"><img id="vent_win" class="example-image" src="img/matriz_cruzada.png" alt="image-1" /></a>
+                <p>En un análisis general, se puede observar como la clase selva baja caducifolia (<strong>SB</strong>), presento una cobertura dominante en los dos periodos, con <strong>47.12%</strong> para <strong>1990</strong> y <strong>39.85%</strong> para <strong>2019</strong>, con respecto al área clasificada para cada año, seguido de bosque encino (<strong>BE</strong>) y bosque de pino (<strong>BP</strong>). Los datos permiten reconocer las clases que han experimentado más cambios, estas son principalmente el bosque ayarín (<strong>BA</strong>) y vegetación inducida (<strong>VI</strong>). Se observa que la clase de bosque de pino (<strong>BP</strong>) y bosque encino (<strong>BE</strong>) presentaron un aumento gradual y mantuvieron su densidad de superficie, esto puede deberse a que se encuentran localizados hacia las partes más altas en zonas de altas pendientes </p>
+                <p>La clase de uso agrícola (<strong>AG</strong>) también sufrió cambios significativos, se observa un aumento de su frontera. Esto también puede evaluarse mediante la visualización de los mapas activando la capa de uso de suelo de cada año. Se observa que la clase agrícola, la cual se extiende y se abre paso hacia la clase de selva baja caducifolia (<strong>SB</strong>), afectando la frontera de esta clase.</p>
+
+                <a class="example-image-link" href="img/valores_transicion.png" data-lightbox="example-1" data-title="Valores de transición"><img id="vent_win" class="example-image" src="img/valores_transicion.png" alt="image-1"/></a>
+
+                <p>A pesar de haber experimentado cambios, la clase que mantuvo parte de su superficie con cobertura dominante fue selva baja caducifolia (<strong>SB</strong>), con <strong>233,666.6</strong> ha, lo que equivale al <strong>60%</strong> respecto a la superficie del área de esa misma clase en el año <strong>1990</strong>. seguido del bosque de pino con <strong>83,989.44</strong> ha, que equivale al <strong>58.6%</strong> respecto a la superficie del área de bosque pino del año <strong>1990</strong>.</p>
+                <p>Puede solicitar mas informacion de este estudio <a href="javascript:Abrir_us()"><i class="fas fa-info"></i></a></p>
+        </div>
+    <div id="map" class="sidebar-map"></div>
+    <img src="img/titulo.png" width="28%" style="background:rgba(255,255,255,0.5); position: absolute; box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, .2); border-radius: 15px 15px 15px 15px; left: 27%; bottom: 2%; z-index: 9999;" >
+   
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+
+    <script src="js/leaflet-sidebar.js"></script>
+    <script src="js/leaflet-side.js"></script>
+    <script src="leaflet.groupedlayercontrol.js"></script>
+                              
+	<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <script src="js/leaflet.browser.print.js"></script>
+    <script src="js/leaflet.browser.print.utils.js"></script>
+    <script src="js/leaflet.browser.print.sizes.js"></script>
+
+	<link rel="stylesheet" href="js/Control.MiniMap.css" />
+	<script src="js/Control.MiniMap.js" type="text/javascript"></script>
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/leaflet-openweathermap.css" />
+	<script type="text/javascript" src="js/leaflet-openweathermap.js"> </script>
+
+  	<script type="text/javascript" src="js/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="js/MarkerCluster.css" />
+    <link rel="stylesheet" href="js/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+	<script type="text/javascript" src="js/lightbox.js" > </script>
+    <link rel="stylesheet" href="css/lightbox.css" />
+    <script src="mapa.js"></script>                             
+  
+ 
+    
+</body>
+</html>
+     
+        
